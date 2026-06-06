@@ -1,10 +1,11 @@
 import { Router } from 'express';
-import { getWords, getWordByCategory, createWordList } from '../controllers/wordController';
+import { getWords, getWordByCategory, createWordList, editWord } from '../controllers/wordController';
 
 const router = Router();
 
 router.post('/', createWordList);
+router.put('/', editWord);
 router.get('/', getWords);
-router.post('/category', getWordByCategory);
+router.get('/category', getWordByCategory);
 
 export default router;

@@ -1,9 +1,10 @@
 import { Router } from 'express';
-import { createCategory, getCategorys } from '../controllers/categoryController';
+import { createCategory, editCategory, getCategorys } from '../controllers/categoryController';
 
 const router = Router();
 
 router.post('/', createCategory);
+router.put('/', editCategory);
 router.get('/', getCategorys);
 
 

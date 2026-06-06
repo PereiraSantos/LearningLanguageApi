@@ -22,6 +22,13 @@ export class CategoryService {
         return rows[0];
     }
 
+    static async editCategory(name: string, id: number): Promise<Category> {
+        const sql = 'UPDATE categorys set name = $1 where id = $2';
+        const values = [name, id];
+        const { rows } = await pool.query(sql, values);
+        return rows[0];
+    }
+
     static async findCategoryAll(): Promise<Category[]> {
 
         const { rows } = await pool.query('SELECT * FROM categorys ORDER BY id ASC');

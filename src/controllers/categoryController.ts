@@ -13,6 +13,18 @@ export const createCategory = async (req: Request, res: Response, next: NextFunc
     }
 };
 
+export const editCategory = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const body = req.body;
+        await CategoryService.initTable();
+        var category = await CategoryService.editCategory(body.name, body.id);
+
+        res.status(201).json(category);
+    } catch (error) {
+        next(error);
+    }
+};
+
 export const getCategorys = async (req: Request, res: Response, next: NextFunction) => {
     try {
         await CategoryService.initTable();

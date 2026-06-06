@@ -32,6 +32,13 @@ export class WordService {
         }
     }
 
+    static async editWord(name: string, id: number): Promise<Word[]> {
+        const sql = 'UPDATE words set name = $1 where id = $2';
+        const values = [name, id];
+        const { rows } = await pool.query(sql, values);
+        return rows;
+    }
+
     static async findWordAll(): Promise<Category[]> {
         const { rows } = await pool.query('SELECT * FROM words ORDER BY id ASC');
         return rows;

@@ -26,6 +26,17 @@ export const createWordList = async (req: Request, res: Response, next: NextFunc
     }
 };
 
+export const editWord = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const body = req.body;
+        await WordService.initTable();
+        let word = await WordService.editWord(body.word, body.id);
+        res.status(201).json(word);
+    } catch (error) {
+        next(error);
+    }
+};
+
 export const getWords = async (req: Request, res: Response, next: NextFunction) => {
     try {
         await WordService.initTable();
